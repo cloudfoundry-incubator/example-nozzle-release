@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p tmp
+spiff merge templates/template.yml templates/bosh-lite-stub.yml | sed "s/PLACEHOLDER-DIRECTOR-UUID/$(bosh status --uuid)/g" > tmp/manifest_bosh_lite.yml
+
+bosh deployment tmp/manifest_bosh_lite.yml

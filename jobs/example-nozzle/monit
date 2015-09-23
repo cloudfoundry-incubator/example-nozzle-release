@@ -1,0 +1,5 @@
+check process example-nozzle
+  with pidfile /var/vcap/sys/run/example-nozzle/example-nozzle.pid
+  start program "/var/vcap/jobs/example-nozzle/bin/example-nozzle-ctl start"
+  stop program "/var/vcap/jobs/example-nozzle/bin/example-nozzle-ctl stop"
+  group vcap

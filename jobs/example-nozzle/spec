@@ -1,0 +1,21 @@
+---
+name: example-nozzle
+templates:
+  example-nozzle-ctl.erb: bin/example-nozzle-ctl
+
+packages:
+- example-nozzle
+
+properties:
+  loggregator.traffic_controller_url:
+    description: "Traffic controller URL"
+    default: "wss://doppler.bosh-lite.com:443"
+  uaa.url:
+    description: "URL for the UAA server"
+    default: "https://uaa.bosh-lite.com"
+  uaa.username:
+    description: "The user who has access to the loggregator firehose"
+    default: "example-nozzle"
+  uaa.password:
+    description: "The password for the user"
+    default: "example-nozzle"

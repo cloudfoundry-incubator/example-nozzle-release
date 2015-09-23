@@ -1,0 +1,50 @@
+---
+
+name: (( merge ))
+director_uuid: (( merge ))
+
+meta: (( merge ))
+
+releases:
+  - name: example-nozzle
+    version: latest
+
+compilation:
+  workers: (( merge ))
+  network: example-nozzle-net
+  reuse_compilation_vms: true
+  cloud_properties:
+    name: default
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-100000
+  update_watch_time: 30000-100000
+  max_in_flight: 1
+  max_errors: 1
+
+networks:
+- name: example-nozzle-net
+  subnets: (( merge ))
+
+resource_pools:
+- name: example-nozzle
+  network: example-nozzle-net
+  size: 1
+  stemcell: (( meta.stemcell ))
+  cloud_properties:
+    name: default
+
+jobs:
+- name: example-nozzle
+  memory_mb: 2048
+  templates:
+    - {name: example-nozzle, release: example-nozzle}
+  instances: 1
+  resource_pool: example-nozzle
+  networks: (( merge ))
+  cloud_properties:
+    name: default
+
+properties:
+  <<: (( merge ))

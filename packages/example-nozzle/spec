@@ -1,0 +1,8 @@
+---
+name: example-nozzle
+
+dependencies:
+    - golang1.4
+
+files:
+    - github.com/**/*

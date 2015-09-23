@@ -1,0 +1,26 @@
+---
+name: example-nozzle-lite
+director_uuid: PLACEHOLDER-DIRECTOR-UUID
+meta:
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
+
+networks:
+- name: example-nozzle-net
+  subnets:
+  - cloud_properties:
+      name: example-nozzle-net
+    range: 10.244.61.0/28
+    gateway: 10.244.61.1
+    static:
+    - 10.244.61.2 - 10.244.61.12
+
+compilation:
+  workers: 1
+
+jobs:
+- name: example-nozzle
+  networks:
+  - name: example-nozzle-net
+    static_ips: 10.244.61.2
